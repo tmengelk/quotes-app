@@ -7,12 +7,12 @@ const loader = document.getElementById('loader');
 
 let quotes = [];
 
-function loading() {
+function showLoadingSpinner() {
   loader.hidden = false;
   quoteContainer.hidden = true;
 }
 
-function loadComplete() {
+function hideLoadingSpinner() {
   quoteContainer.hidden = false;
   loader.hidden = true;
 }
@@ -22,7 +22,7 @@ function getRandomIndex(length) {
 }
 
 function newQuote() {
-  loading();
+  showLoadingSpinner();
   const quote = quotes[getRandomIndex(quotes.length)];
   console.log(quote.author);
 
@@ -35,12 +35,11 @@ function newQuote() {
   }
 
   quoteText.textContent = quote.text;
-  loadComplete();
+  hideLoadingSpinner();
 }
 
-// Get quotes from API
 async function getQuotes() {
-  loading();
+  showLoadingSpinner();
   const apiUrl = 'https://type.fit/api/quotes';
 
   try {
